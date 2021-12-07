@@ -3,5 +3,8 @@ const connection = require('./connection');
 
 module.exports = async (id) => {
   const db = await connection();
-  return db.collection('recipes').findOne({ _id: ObjectId(id) });
+  if (ObjectId.isValid(id)) {
+    return db.collection('recipes').findOne({ _id: ObjectId(id) });
+  }
+  return null;
 };
