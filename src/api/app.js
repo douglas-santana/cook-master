@@ -16,5 +16,6 @@ app.get('/', (request, response) => {
 app.post('/users', routes.createUsers);
 app.post('/login', routes.login);
 app.post('/recipes', validAuth, routes.createRecipes);
+app.get('/recipes', validAuth, routes.getRecipes);
 
 module.exports = app;
