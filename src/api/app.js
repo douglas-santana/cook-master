@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const validAuth = require('../middlewares/auth');
 
 const app = express();
 
@@ -14,6 +15,6 @@ app.get('/', (request, response) => {
 
 app.post('/users', routes.createUsers);
 app.post('/login', routes.login);
-app.post('/recipes', routes.createRecipes);
+app.post('/recipes', validAuth, routes.createRecipes);
 
 module.exports = app;
