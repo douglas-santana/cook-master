@@ -1,6 +1,6 @@
 const createUsers = require('../controllers/createUser');
 const login = require('../controllers/login');
 const createRecipes = require('../controllers/createRecipe');
-const getRecipes = require('../controllers/getRecipe');
+const getAllRecipes = require('../controllers/getAllRecipes');
 
-module.exports = { createUsers, login, createRecipes, getRecipes };
+module.exports = { createUsers, login, createRecipes, getAllRecipes };
