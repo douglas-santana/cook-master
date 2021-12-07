@@ -7,5 +7,5 @@ module.exports = async (userId, name, ingredients, preparation) => {
     { _id: ObjectId(userId) },
     { $set: { name, ingredients, preparation } },
   );
-  return { name, ingredients, preparation, userId };
+  return { _id: ObjectId(userId), name, ingredients, preparation, userId };
 };

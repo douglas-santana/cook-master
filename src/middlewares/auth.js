@@ -12,8 +12,10 @@ module.exports = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-    console.log(err.message);
     if (err.message === 'jwt malformed') return res.status(401).json({ message: 'jwt malformed' });
+    if (err.message === 'jwt must be provided') {
+      return res.status(401).json({ message: 'missing auth token' });
+    }
     return res.status(500).json({ message: 'erro ao decodificar' });
   }
 };

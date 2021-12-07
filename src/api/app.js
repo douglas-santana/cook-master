@@ -18,6 +18,6 @@ app.post('/login', routes.login);
 app.post('/recipes', validAuth, routes.createRecipes);
 app.get('/recipes', routes.getAllRecipes);
 app.get('/recipes/:id', routes.getEspecifyRecipe);
-app.put('/recipes/:id', routes.editRecipe);
+app.put('/recipes/:id', validAuth, routes.editRecipe);
 
 module.exports = app;
