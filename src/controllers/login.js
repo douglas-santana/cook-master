@@ -13,7 +13,10 @@ module.exports = async (req, res) => {
   const { email, password } = req.body;
 
   const verifys = await loginVerifys(email, password);
-  if (verifys) return verifys;
+  if (verifys) {
+    const { status, message } = verifys;
+    return res.status(status).json({ message });
+  }
 
   const userDB = await findUser(email);
 
