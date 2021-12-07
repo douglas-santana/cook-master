@@ -5,7 +5,6 @@ const secret = 'mypass';
 
 module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
-  if (!authorization) return next();
 
   try {
     const decoded = jwt.verify(authorization, secret);
