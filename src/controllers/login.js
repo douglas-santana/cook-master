@@ -1,29 +1,14 @@
-const jwt = require('jsonwebtoken');
-const findUser = require('../models/login');
-const loginVerifys = require('./loginVerifys');
-
-const secret = 'mypass';
-
-const jwtConfig = {
-  expiresIn: '7d',
-  algorithm: 'HS256',
-};
+const login = require('../services/login');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
 
-  const verifys = loginVerifys(email, password);
-  if (verifys) {
-    const { status, message } = verifys;
+  const data = await login(email, password);
+  
+  if (data.message) {
+    const { status, message } = data;
     return res.status(status).json({ message });
   }
 
-  const userDB = await findUser(email);
-
-  delete userDB.password;
-  delete userDB.name;
-
-  const token = jwt.sign({ data: userDB }, secret, jwtConfig);
-
-  return res.status(200).json({ token });
+  return res.status(200).json({ token: data });
 };
