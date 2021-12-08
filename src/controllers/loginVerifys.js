@@ -1,9 +1,8 @@
-module.exports = async (email, password) => {
+module.exports = (email, password) => {
   const emailIsValid = /^[a-z0-9.]+@[a-z]+\.[a-z]/i;
   if (!email) return { status: 401, message: 'All fields must be filled' };
   if (!password) return { status: 401, message: 'All fields must be filled' };
   if (!emailIsValid.test(email)) return { status: 401, message: 'Incorrect username or password' };
-  if (password.length < 8) return { status: 401, message: 'Incorrect username or password' };
   return null;
 };
 

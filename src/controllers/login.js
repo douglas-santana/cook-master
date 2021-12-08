@@ -12,18 +12,16 @@ const jwtConfig = {
 module.exports = async (req, res) => {
   const { email, password } = req.body;
 
-  if (email === 'root@email.com') {
-    const userRoot = await findUser(email);
-    return res.status(200).json({ userRoot });
-  }
-
-  const verifys = await loginVerifys(email, password);
+  const verifys = loginVerifys(email, password);
   if (verifys) {
     const { status, message } = verifys;
     return res.status(status).json({ message });
   }
 
   const userDB = await findUser(email);
+
+  delete userDB.password;
+  delete userDB.name;
 
   const token = jwt.sign({ data: userDB }, secret, jwtConfig);
 

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const findUser = require('../models/login');
 
 const secret = 'mypass';
 
@@ -8,8 +7,7 @@ module.exports = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(authorization, secret);
-    const user = await findUser(decoded.data.email);
-    req.user = user;
+    req.user = decoded.data;
     next();
   } catch (err) {
     if (err.message === 'jwt malformed') return res.status(401).json({ message: 'jwt malformed' });
