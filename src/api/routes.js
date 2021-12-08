@@ -6,6 +6,7 @@ const getEspecifyRecipe = require('../controllers/getEspecifyRecipe');
 const editRecipe = require('../controllers/editRecipe');
 const removeRecipe = require('../controllers/removeRecipe');
 const createAdmins = require('../controllers/createAdmin');
+const uploadImg = require('../controllers/uploadImg');
 
 module.exports = {
   createUsers,
@@ -16,4 +17,5 @@ module.exports = {
   editRecipe,
   removeRecipe,
   createAdmins,
+  uploadImg,
 };
